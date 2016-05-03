@@ -124,6 +124,7 @@ angular.module('app.controllers', [])
 
         this.post;
         this.postid;
+        this.contentHTML;
         this.sharingBoxVisible = false;
         this.getData = function (param) {
             if (this.post === undefined) {
@@ -146,14 +147,31 @@ angular.module('app.controllers', [])
                 if ($scope.blogpost !== undefined && posts[key].alias == $scope.blogpost.alias) {
                     this.post = posts[key];
                     this.postid = key;
+                    this.parseMarkdown();
                 }
                 else if (posts[key].alias == $stateParams.alias) {
                     this.post = posts[key];
                     this.postid = key;
+                    this.parseMarkdown();
                 }
             }
+
         };
-        this.loadPost();
+
+        this.parseMarkdown = function () {
+            if (this.post.content && this.contentHTML === undefined) {
+                var markdown = marked(this.post.content);
+                //replace the imgs
+                var re = /img src="(imgs\/([a-zA-Z0-9]+))"/g;
+                while (match = re.exec(markdown)) {
+                    var image = $scope.getData('posts', this.postid, 'images', match[2]);
+                    if (image !== undefined) {
+                        markdown = markdown.replace(match[1], image);
+                    }
+                }
+                this.contentHTML = markdown;
+            }
+        };
 
         this.toggleSharingBox = function () {
             this.sharingBoxVisible = (!this.sharingBoxVisible);
@@ -166,4 +184,7 @@ angular.module('app.controllers', [])
         this.getFBref = function () {
             return API.getFirebasePostRef() + "/" + this.postid;
         };
+
+        //on init
+        this.loadPost();
     });

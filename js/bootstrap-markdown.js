@@ -322,7 +322,7 @@
                     textarea = container;
                     textarea.addClass('md-input');
                     editor.append(textarea);
-                    var preview = $('<div id="md-preview">');
+                    var preview = $('<div id="md-preview" ng-bind-html="post.contentHTML"></div>');
                     editor.append(preview);
                 } else {
                     var rawContent = (typeof toMarkdown == 'function') ? toMarkdown(container.html()) : container.html(),

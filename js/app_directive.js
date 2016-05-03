@@ -9,19 +9,38 @@ angular.module('app.directives', [])
             }
         };
     })
-    .directive('blogPost', function ($timeout, $rootScope, $firebaseObject, API) {
+    .directive('blogPost', function ($timeout, $rootScope, $firebaseObject, API, User) {
         return {
             restrict: 'E',
             templateUrl: 'templates/blog-post.html',
-            link: function (scope) {
+            link: function (scope, element) {
                 $timeout(function () {
                     Modal.init();
-                    //$('textarea[data-provide="markdown"]').each(function () {
-                    //    $.fn.initMarkdown($(this));
-                    //});
+                    var parseMarkdown = function (postid, content, targer) {
+                        var markdown = marked(content);
+                        //replace the imgs
+                        var re = /img src="(imgs\/([a-zA-Z0-9]+))"/g;
+                        while (match = re.exec(markdown)) {
+                            var image = $rootScope.getData('posts', postid, 'images', match[2]);
+                            if (image !== undefined) {
+                                markdown = markdown.replace(match[1], image);
+                            }
+                        }
+                        targer.html(markdown);
+                    };
 
+                    //override the image drop
                     Dropzone.prototype.submitRequest = function (xhr, formData, files) {
-                        var form = $(this.element).parents('form');
+                        var form = $(this.element);
+                        if ($(this.element).data('fbref') == null) {
+                            form = $(this.element).parents('form');
+                        }
+
+                        var pace_element = $('div.pace').clone();
+                        pace_element.removeClass('pace-inactive');
+                        pace_element.addClass('pace-active');
+                        form.append(pace_element);
+                        var target = form.data('target');
                         var file = files[0];
                         // Handle one upload at a time
                         if (/image/.test(file.type)) {
@@ -32,35 +51,41 @@ angular.module('app.directives', [])
                                     var filePayload = e.target.result;
                                     // Generate a location that can't be guessed using the file's contents and a random number
                                     var hash = CryptoJS.SHA256(Math.random() + CryptoJS.SHA256(filePayload));
+
                                     var fbref = form.data('fbref') + "/images" + '/' + hash;
+                                    if (target == 'cover') {
+                                        fbref = form.data('fbref') + "/image";
+                                    }
                                     var f = new Firebase(fbref);
                                     // Set the file payload to Firebase and register an onComplete handler to stop the spinner and show the preview
                                     f.set(filePayload, function () {
-                                        //append to the text
-                                        var title = 'enter image title here';
-                                        var description = 'enter image description here';
-                                        textareatxt = form.find('textarea.md-input').val();
-                                        textareatxt += '![' + description + '](imgs/' + hash + ' "' + title + '")';
-                                        form.find('textarea.md-input').val(textareatxt);
-                                        form.find('textarea.md-input').trigger('change');
+                                        form.find('div.pace').remove();
+                                        if (target == 'images') {
+                                            //append to the text
+                                            var title = 'enter image title here';
+                                            var description = 'enter image description here';
+                                            textareatxt = form.find('textarea.md-input').val();
+                                            textareatxt += '![' + description + '](imgs/' + hash + ' "' + title + '")';
+                                            form.find('textarea.md-input').val(textareatxt);
+                                            form.find('textarea.md-input').trigger('change');
+                                        } else {
+                                            $(form).parents('blog-post').find('img.coverimage').attr('src', filePayload);
+                                        }
                                     });
                                 };
                             })(file);
                             reader.readAsDataURL(file);
                         }
                     };
-                    $('textarea[data-provide="markdown"]').markdown({
+                    $(element).find('textarea[data-provide="markdown"]').markdown({
                         dropZoneOptions: {url: "/file/post", previewsContainer: false},
                         onChange: function (e) {
                             if (e.isDirty()) {
                                 var form = $(e.$textarea).parents('form');
                                 if (!form.data('pending-upload')) {
-                                    console.log('loading');
                                     form.data('pending-upload', true);
                                     $timeout(function () {
-                                        console.log('uploading');
                                         form.data('pending-upload', false);
-                                        var markdown = marked(e.getContent());
                                         var postid = $(e.$textarea).parents('form').data('postid');
                                         //push the changes to firebase
                                         //TODO fix the two way binding
@@ -70,72 +95,21 @@ angular.module('app.directives', [])
                                             post.content = e.getContent();
                                             post.$save();
                                         });
-                                        //replace the imgs
-                                        var re = /img src="(imgs\/([a-zA-Z0-9]+))"/g;
-                                        while (match = re.exec(markdown)) {
-                                            var image = $rootScope.getData('posts', postid, 'images', match[2]);
-                                            if (image !== undefined) {
-                                                markdown = markdown.replace(match[1], image);
-                                            }
-                                        }
 
-                                        $(e.$textarea)
-                                            .parent()
-                                            .find('#md-preview')
-                                            .html(markdown);
-
+                                        parseMarkdown(postid, e.getContent(), $(e.$textarea).parent().find('#md-preview'));
                                     }, 3000);
-                                } else {
-                                    console.log('pending');
                                 }
                             }
                         }
                     });
 
-                    $('.js-st-instance').each(function (key, element) {
-                        var jelement = $(element);
-                        if (jelement.attr('editor_loaded') === undefined) {
-                            var editor = new SirTrevor.Editor(
-                                {
-                                    el: jelement,
-                                    onChange: function (form) {
-                                        //get the editor and update the json
-                                        var editor = form.data('editor');
-                                        editor.store.reset();
-                                        editor.validateBlocks(false);
+                    $(element).find('form#coverimage-dropzone').dropzone({previewsContainer: false});
 
-                                        //get post id
-                                        var postid = form.attr('id').replace('post_', '');
+                    //parse on load
+                    if (User.isLoggedIn()) {
+                        parseMarkdown(scope.postid, $(element).find('textarea.md-input').val(), $(element).find('#md-preview'));
+                    }
 
-                                        //push the changes to firebase
-                                        //TODO fix the two way binding
-                                        var postsRef = new Firebase(API.getFirebasePostRef() + "/" + postid);
-                                        var post = $firebaseObject(postsRef);
-                                        post.$loaded().then(function () {
-                                            post.json = editor.store.retrieve();
-                                            post.$save();
-                                        });
-                                    }
-                                }
-                            );
-                            jelement.attr('editor_loaded', true);
-                            jelement.parents('form').data('editor', editor);
-                        }
-                    });
-
-                    $('.js-image-instance').each(function (key, element) {
-                        var jelement = $(element);
-                        if (jelement.attr('editor_loaded') === undefined) {
-
-                            new SirTrevor.Editor(
-                                {
-                                    el: jelement,
-                                    blockTypes: ["Image"]
-                                }
-                            );
-                            jelement.attr('editor_loaded', true);
-                        }
-                    });
                 }, 0);
             }
         };

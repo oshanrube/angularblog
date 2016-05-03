@@ -1,6 +1,20 @@
 body {
   section.blog-post {
 
+    form {
+      position: relative;
+      .pace {
+        .pace-activity {
+          position: absolute;
+          background-color: rgba(0, 0, 0, 0.35);
+        }
+      }
+    }
+    div.md-content {
+      img {
+        max-width: 100%;
+      }
+    }
     a.blog-post-share {
       cursor: pointer;
     }

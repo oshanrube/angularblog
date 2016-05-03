@@ -1,3 +1,10 @@
+body section.blog-post form {
+  position: relative; }
+  body section.blog-post form .pace .pace-activity {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.35); }
+body section.blog-post div.md-content img {
+  max-width: 100%; }
 body section.blog-post a.blog-post-share {
   cursor: pointer; }
 body section.blog-post div.blog-post-content textarea.md-input,
