@@ -486,9 +486,6 @@
                     };
                     this.$textarea.addClass('dropzone');
                     this.$editor.dropzone(options.dropZoneOptions);
-                    Dropzone.prototype.submitRequest = function (xhr, formData, files) {
-                        console.log('asd');
-                    };
                 } else {
                     console.log('dropZoneOptions was configured, but DropZone was not detected.');
                 }

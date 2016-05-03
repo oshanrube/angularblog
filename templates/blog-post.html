@@ -21,8 +21,8 @@
                     <textarea class="js-st-instance" name="post[{{ post.postid }}]">{{ post.getData('json') }}</textarea>
                 </form>
 
-                <form ng-show="page.isLoggedIn()">
-                    <textarea name="content" data-hidden-buttons="cmdPreview" data-provide="markdown" rows="10"></textarea>
+                <form ng-show="page.isLoggedIn()" data-fbref="{{post.getFBref()}}" data-postid="{{ post.postid }}">
+                    <textarea name="content" data-hidden-buttons="cmdPreview" data-provide="markdown" rows="10">{{ post.getData('content') }}</textarea>
 
                     <div data-provide="markdown-preview"></div>
                 </form>

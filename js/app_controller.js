@@ -119,7 +119,7 @@ angular.module('app.controllers', [])
         this.url = '';
         this.label = '';
     })
-    .controller('PostController', function ($scope, $stateParams) {
+    .controller('PostController', function ($scope, $stateParams, API) {
 
 
         this.post;
@@ -149,6 +149,7 @@ angular.module('app.controllers', [])
                 }
                 else if (posts[key].alias == $stateParams.alias) {
                     this.post = posts[key];
+                    this.postid = key;
                 }
             }
         };
@@ -160,5 +161,9 @@ angular.module('app.controllers', [])
 
         this.isSharingBoxVisible = function () {
             return (this.sharingBoxVisible);
+        };
+
+        this.getFBref = function () {
+            return API.getFirebasePostRef() + "/" + this.postid;
         };
     });

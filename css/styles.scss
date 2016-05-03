@@ -5,23 +5,34 @@ body {
       cursor: pointer;
     }
 
-    .md-editor.md-fullscreen-mode .md-input, .md-editor.md-fullscreen-mode .md-preview
-    {
+    .md-editor.md-fullscreen-mode .md-input, .md-editor.md-fullscreen-mode .md-preview {
 
     }
 
     div.blog-post-content {
+
+      textarea.md-input,
+      #md-preview {
+        padding: 10px;
+        img {
+          max-width: 100%;
+        }
+      }
+
       div.md-editor.md-fullscreen-mode {
         textarea.md-input {
           width: 50%;
           display: inline-block;
           border-right: 1px solid #ccc;
+          padding: 20px;
         }
         #md-preview {
           width: 50%;
           display: inline-block;
           vertical-align: top;
           padding: 20px;
+          height: 100%;
+          overflow: auto;
         }
       }
     }

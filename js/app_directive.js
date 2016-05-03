@@ -19,12 +19,75 @@ angular.module('app.directives', [])
                     //$('textarea[data-provide="markdown"]').each(function () {
                     //    $.fn.initMarkdown($(this));
                     //});
+
+                    Dropzone.prototype.submitRequest = function (xhr, formData, files) {
+                        var form = $(this.element).parents('form');
+                        var file = files[0];
+                        // Handle one upload at a time
+                        if (/image/.test(file.type)) {
+                            //upload
+                            var reader = new FileReader();
+                            reader.onload = (function (theFile) {
+                                return function (e) {
+                                    var filePayload = e.target.result;
+                                    // Generate a location that can't be guessed using the file's contents and a random number
+                                    var hash = CryptoJS.SHA256(Math.random() + CryptoJS.SHA256(filePayload));
+                                    var fbref = form.data('fbref') + "/images" + '/' + hash;
+                                    var f = new Firebase(fbref);
+                                    // Set the file payload to Firebase and register an onComplete handler to stop the spinner and show the preview
+                                    f.set(filePayload, function () {
+                                        //append to the text
+                                        var title = 'enter image title here';
+                                        var description = 'enter image description here';
+                                        textareatxt = form.find('textarea.md-input').val();
+                                        textareatxt += '![' + description + '](imgs/' + hash + ' "' + title + '")';
+                                        form.find('textarea.md-input').val(textareatxt);
+                                        form.find('textarea.md-input').trigger('change');
+                                    });
+                                };
+                            })(file);
+                            reader.readAsDataURL(file);
+                        }
+                    };
                     $('textarea[data-provide="markdown"]').markdown({
-                        dropZoneOptions: {url: "/file/post"},
+                        dropZoneOptions: {url: "/file/post", previewsContainer: false},
                         onChange: function (e) {
                             if (e.isDirty()) {
-                                var originalContent = e.getContent()
-                                $('#md-preview').html(marked(originalContent));
+                                var form = $(e.$textarea).parents('form');
+                                if (!form.data('pending-upload')) {
+                                    console.log('loading');
+                                    form.data('pending-upload', true);
+                                    $timeout(function () {
+                                        console.log('uploading');
+                                        form.data('pending-upload', false);
+                                        var markdown = marked(e.getContent());
+                                        var postid = $(e.$textarea).parents('form').data('postid');
+                                        //push the changes to firebase
+                                        //TODO fix the two way binding
+                                        var postsRef = new Firebase(API.getFirebasePostRef() + "/" + postid);
+                                        var post = $firebaseObject(postsRef);
+                                        post.$loaded().then(function () {
+                                            post.content = e.getContent();
+                                            post.$save();
+                                        });
+                                        //replace the imgs
+                                        var re = /img src="(imgs\/([a-zA-Z0-9]+))"/g;
+                                        while (match = re.exec(markdown)) {
+                                            var image = $rootScope.getData('posts', postid, 'images', match[2]);
+                                            if (image !== undefined) {
+                                                markdown = markdown.replace(match[1], image);
+                                            }
+                                        }
+
+                                        $(e.$textarea)
+                                            .parent()
+                                            .find('#md-preview')
+                                            .html(markdown);
+
+                                    }, 3000);
+                                } else {
+                                    console.log('pending');
+                                }
                             }
                         }
                     });

@@ -1,14 +1,23 @@
 body section.blog-post a.blog-post-share {
   cursor: pointer; }
+body section.blog-post div.blog-post-content textarea.md-input,
+body section.blog-post div.blog-post-content #md-preview {
+  padding: 10px; }
+  body section.blog-post div.blog-post-content textarea.md-input img,
+  body section.blog-post div.blog-post-content #md-preview img {
+    max-width: 100%; }
 body section.blog-post div.blog-post-content div.md-editor.md-fullscreen-mode textarea.md-input {
   width: 50%;
   display: inline-block;
-  border-right: 1px solid #ccc; }
+  border-right: 1px solid #ccc;
+  padding: 20px; }
 body section.blog-post div.blog-post-content div.md-editor.md-fullscreen-mode #md-preview {
   width: 50%;
   display: inline-block;
   vertical-align: top;
-  padding: 20px; }
+  padding: 20px;
+  height: 100%;
+  overflow: auto; }
 body section.blog-post div.sharing-bar {
   margin: 0;
   padding: 15px 0;
