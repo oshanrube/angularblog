@@ -32,7 +32,7 @@ $color_red_orange_approx: #f44336;
 $color_cinnabar_approx: #e53935;
 
 //urls
-$url_0: url(../img/photo-1449452514032-f1eba6007f52.html);
+$url_0: url(images/coverbg.jpg);
 $url_1: url(../icons/top-arrow.svg);
 $url_2: url(../img/landing/macbook.png);
 
@@ -364,7 +364,7 @@ a {
   height: 240px;
   z-index: 0;
   background-repeat: no-repeat;
-  background-position: center 65%;
+  background-position: center 30%;
   background-attachment: scroll;
   background-size: cover;
   background-image: $url_0;

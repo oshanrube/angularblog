@@ -57,6 +57,13 @@
     <script src="bower_components/angular-material/angular-material.js"></script>
 </head>
 <body ng-controller="PageController as page">
+<div class="pace  pace-active" id="firebase-loading">
+    <div class="pace-progress" data-progress-text="100%" data-progress="99" style="width: 100%;">
+        <div class="pace-progress-inner"></div>
+    </div>
+    <div class="pace-activity"></div>
+</div>
+
 <navbar></navbar>
 <section ui-view></section>
 <footer class="blog-footer"></footer>

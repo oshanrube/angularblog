@@ -13,14 +13,11 @@
             $rootScope.syncObject = $firebaseObject($rootScope.FirebaseRef);
             // synchronize the object with a three-way data binding
             // click on `index.html` above to see it used in the DOM!
-            $rootScope.syncObject.$bindTo($rootScope, "data");
-            //.then(function () {
-            //    console.log($rootScope.data);
-            //});
-            //$rootScope.syncObject.$watch(function () {
-            //    var d = new Date();
-            //    console.log("data changed:", d.toUTCString());
-            //});
+            $rootScope.syncObject.$bindTo($rootScope, "data").then(function () {
+                //stop loading
+                $('#firebase-loading').remove();
+            });
+
 
             $rootScope.getData = function () {
                 if ($rootScope.data !== undefined) {

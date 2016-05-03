@@ -215,10 +215,10 @@ a {
   height: 240px;
   z-index: 0;
   background-repeat: no-repeat;
-  background-position: center 65%;
+  background-position: center 30%;
   background-attachment: scroll;
   background-size: cover;
-  background-image: url(../img/photo-1449452514032-f1eba6007f52.html); }
+  background-image: url(images/coverbg.jpg); }
 
 .navbar-absolute-top {
   width: 100%;
