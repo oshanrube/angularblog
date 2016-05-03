@@ -1,0 +1,378 @@
+.blog-comments-title, .blog-post-title {
+  margin-bottom: 5px;
+  font-size: 24px;
+  font-weight: 400;
+  color: #333; }
+
+.material-cornerbutton.default, .material-cornerbutton.default:hover, .material-cornerbutton.default::before, .material-cornerbutton.inverse, .material-cornerbutton.inverse:hover, .material-cornerbutton.inverse::before, .material-cornerbutton.primary, .material-cornerbutton.primary:hover, .material-cornerbutton.primary::before, .material-cornerbutton.success, .material-cornerbutton.success:hover, .material-cornerbutton.success::before, .material-cornerbutton.info, .material-cornerbutton.info:hover, .material-cornerbutton.info::before, .material-cornerbutton.warning, .material-cornerbutton.warning:hover, .material-cornerbutton.warning::before, .material-cornerbutton.danger, .material-cornerbutton.danger:hover, .material-cornerbutton.danger::before {
+  background-image: url(../icons/top-arrow.svg);
+  background-position: center 50%;
+  background-repeat: no-repeat; }
+
+.pace {
+  pointer-events: none;
+  user-select: none; }
+  .pace .pace-activity {
+    display: block;
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #009688;
+    transition: transform 0.4s;
+    transform: translateX(0%) translateY(-100%);
+    pointer-events: none; }
+  .pace .pace-activity::after {
+    box-sizing: border-box;
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    display: block;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    content: '';
+    top: 50%;
+    margin-left: -20px;
+    width: 40px;
+    height: 40px;
+    border-top-color: rgba(0, 0, 0, 0.2);
+    animation: pace-theme-corner-indicator-spin 1.2s linear infinite; }
+  .pace.pace-active .pace-activity {
+    transform: translateX(0%) translateY(0%); }
+
+@-webkit-keyframes pace-theme-corner-indicator-spin {}
+@keyframes pace-theme-corner-indicator-spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(359deg); } }
+a {
+  color: #03a9f4; }
+  a:hover {
+    color: #03a9f4; }
+  a:focus {
+    color: #03a9f4; }
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1040px; }
+
+  .macbook {
+    padding: 10px 54px 10px 57px;
+    height: 274px; }
+    .macbook .inner {
+      height: 241px; } }
+.form-group {
+  margin: 0; }
+  .form-group.form-group-sm.label-floating label.control-label {
+    font-size: 13px;
+    top: -16px; }
+  .form-group.form-group-sm.label-placeholder label.control-label {
+    font-size: 13px;
+    top: -16px; }
+
+.label {
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-weight: 400;
+  transition: all 0.15s ease; }
+
+.material-icons.md-18 {
+  font-size: 18px; }
+.material-icons.md-24 {
+  font-size: 24px; }
+.material-icons.md-36 {
+  font-size: 36px; }
+.material-icons.md-48 {
+  font-size: 48px; }
+
+.page-header {
+  margin: 0 0 40px; }
+  .page-header h2 {
+    margin: 0; }
+
+.blog-main {
+  font-size: 14px;
+  line-height: 1.5; }
+
+.blog-content {
+  padding-top: 320px; }
+
+.sidebar-module {
+  margin: 0 auto 30px auto; }
+  .sidebar-module:first-child {
+    margin-top: 0; }
+  .sidebar-module h4 {
+    margin-bottom: 22px; }
+  .sidebar-module .categories li {
+    margin: 12px auto; }
+
+.sidebar-module-inset p:last-child {
+  margin-bottom: 0; }
+.sidebar-module-inset ul:last-child {
+  margin-bottom: 0; }
+.sidebar-module-inset ol:last-child {
+  margin-bottom: 0; }
+
+.pager {
+  margin-bottom: 60px;
+  text-align: left; }
+  .pager > li > a {
+    width: 140px;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 30px; }
+  .pager li > a.read-more {
+    width: 100%; }
+
+.blog-post {
+  margin-bottom: 30px; }
+  .blog-post a {
+    text-decoration: none; }
+  .blog-post p {
+    font-size: 13px;
+    font-weight: 400; }
+  .blog-post .panel-body {
+    padding: 0; }
+  .blog-post .panel {
+    transition: all 0.3s ease; }
+    .blog-post .panel > img {
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px; }
+  .blog-post:hover .panel {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
+
+.blog-post-meta {
+  padding: 16px 22px;
+  color: #999;
+  display: block;
+  border-bottom: 1px solid #ededed; }
+
+.blog-post-date {
+  margin: 6px auto; }
+
+.blog-post-share {
+  margin: 10px auto; }
+
+.blog-post-content {
+  padding: 16px 22px; }
+  .blog-post-content p {
+    color: #999;
+    margin: 18px auto; }
+  .blog-post-content .btn {
+    padding-left: 6px;
+    padding-right: 6px; }
+
+.blog-comments .panel {
+  transition: all 0.3s ease; }
+.blog-comments:hover .panel {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
+
+.blog-footer {
+  padding: 40px 0;
+  background-color: #f9f9f9;
+  border-top: 1px solid #e5e5e5; }
+  .blog-footer a {
+    color: #7f7f7f;
+    text-decoration: none; }
+    .blog-footer a:hover {
+      color: #000; }
+    .blog-footer a:focus {
+      color: #000; }
+    .blog-footer a:active {
+      color: #000; }
+  .blog-footer .brand {
+    color: #7f7f7f;
+    margin-bottom: 10px; }
+  .blog-footer .offset {
+    margin: 4px auto; }
+  .blog-footer p:last-child {
+    margin-bottom: 0; }
+
+.navbar {
+  z-index: 999; }
+  .navbar .navbar-wrapper {
+    padding-top: 180px; }
+  .navbar .navbar-nav > .active > a {
+    background-color: transparent;
+    font-weight: 500; }
+    .navbar .navbar-nav > .active > a:focus {
+      background-color: transparent;
+      font-weight: 500; }
+    .navbar .navbar-nav > .active > a:hover {
+      background-color: transparent;
+      font-weight: 500; }
+
+.navbar-image {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 240px;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-position: center 65%;
+  background-attachment: scroll;
+  background-size: cover;
+  background-image: url(../img/photo-1449452514032-f1eba6007f52.html); }
+
+.navbar-absolute-top {
+  width: 100%;
+  position: absolute; }
+
+@media (min-width: 768px) {
+  .navbar-overlay.navbar-absolute-top .navbar-nav > li {
+    background: rgba(0, 0, 0, 0.3);
+    transition: all 0.1s ease; }
+  .navbar-overlay.navbar-fixed-top li {
+    background: transparent;
+    transition: all 0.1s ease; }
+
+  .macbook {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: scroll;
+    background-size: cover;
+    background-image: url(../img/landing/macbook.png);
+    overflow: hidden;
+    padding: 9px 38px 9px 40px;
+    height: 190px; }
+    .macbook .inner {
+      height: 163px;
+      overflow: hidden; }
+      .macbook .inner .demo {
+        height: 100%;
+        overflow: hidden;
+        transition: all 2.4s ease 0s; }
+        .macbook .inner .demo:hover {
+          background-position: 0 100%; }
+
+  .navbar-absolute-top .navbar-right {
+    margin-right: -30px; }
+
+  #landing-header h1 {
+    font-size: 50px; } }
+.label-light {
+  color: #333;
+  background-color: #ebebeb; }
+  .label-light.label-default {
+    background-color: #ebebeb; }
+  .label-light.label-inverse {
+    background-color: #d9dcf0; }
+  .label-light.label-primary {
+    background-color: #cdeae7; }
+  .label-light.label-success {
+    background-color: #dbefdc; }
+  .label-light.label-info {
+    background-color: #cdeefc; }
+  .label-light.label-warning {
+    background-color: #ffded3; }
+  .label-light.label-danger {
+    background-color: #ffded3; }
+
+.material-cornerbutton.default {
+  background-color: #9e9e9e; }
+  .material-cornerbutton.default:hover {
+    background-color: #9e9e9e; }
+.material-cornerbutton.default::before {
+  background-color: #757575; }
+.material-cornerbutton.inverse {
+  background-color: #3f51b5; }
+  .material-cornerbutton.inverse:hover {
+    background-color: #3f51b5; }
+.material-cornerbutton.inverse::before {
+  background-color: #3949ab; }
+.material-cornerbutton.primary {
+  background-color: #009688; }
+  .material-cornerbutton.primary:hover {
+    background-color: #009688; }
+.material-cornerbutton.primary::before {
+  background-color: #00897b; }
+.material-cornerbutton.success {
+  background-color: #4caf50; }
+  .material-cornerbutton.success:hover {
+    background-color: #4caf50; }
+.material-cornerbutton.success::before {
+  background-color: #4caf50; }
+.material-cornerbutton.info {
+  background-color: #03a9f4; }
+  .material-cornerbutton.info:hover {
+    background-color: #03a9f4; }
+.material-cornerbutton.info::before {
+  background-color: #03a9f4; }
+.material-cornerbutton.warning {
+  background-color: #ff5722; }
+  .material-cornerbutton.warning:hover {
+    background-color: #ff5722; }
+.material-cornerbutton.warning::before {
+  background-color: #f4511e; }
+.material-cornerbutton.danger {
+  background-color: #f44336; }
+  .material-cornerbutton.danger:hover {
+    background-color: #f44336; }
+.material-cornerbutton.danger::before {
+  background-color: #e53935; }
+
+#map {
+  width: 100%;
+  height: 400px; }
+
+#landing-header {
+  margin: 50px auto; }
+  #landing-header h1 {
+    font-size: 40px; }
+  #landing-header i {
+    color: #7f7f7f;
+    font-size: 50px; }
+
+#landing-styles {
+  padding: 26px 0 32px;
+  background-color: #f9f9f9; }
+  #landing-styles .style {
+    margin: 20px auto; }
+
+#landing-footer {
+  margin: 50px auto; }
+
+.macbook {
+  display: block; }
+  .macbook .inner .demo {
+    display: block;
+    height: 340px;
+    background-size: 100% auto;
+    background-position: 0 0; }
+
+@media (max-width: 767px) {
+  .macbook .inner .demo {
+    border-radius: 2px;
+    border: 0;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12); } }
+@media (min-width: 992px) {
+  .macbook {
+    padding: 11px 49px 11px 51px;
+    height: 255px; }
+    .macbook .inner {
+      height: 220px; } }
+.editable {
+  cursor: pointer; }
+
+[contenteditable="true"] {
+  border: 1px solid #ccc; }
+
+span.label .delete, span.label .add {
+  margin-left: 5px;
+  color: #ccc;
+  background: #FCFCFC;
+  padding: 0px 4px;
+  border-radius: 13px;
+  cursor: pointer; }
+span.label .delete:hover,
+span.label .add:hover {
+  color: #878787;
+  background: #ccc; }
+
+/*# sourceMappingURL=material-blog.css.map */

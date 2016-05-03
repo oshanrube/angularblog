@@ -1,0 +1,86 @@
+<html lang="en" ng-app="angularBlog">
+<head ng-controller="HeaderController as header">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="author" content="oshanrube@gmail.com">
+    <link rel="icon" href="favicon.ico">
+    <title>{{ header.getPageTitle() }}</title>
+
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+    <link href="css/styles.css" rel="stylesheet">
+
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <!-- Angular Material Library -->
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="js/firebase.js"></script>
+    <script src="js/angularfire.min.js"></script>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/ripples.min.js"></script>
+    <script src="js/material.min.js"></script>
+    <script src="js/materialinputs.min.js"></script>
+    <script src="js/material-scrolltop.js"></script>
+    <script src="js/material-modal.js"></script>
+    <script src="js/angular-sanitize.js"></script>
+    <script src="js/angular-storage.js"></script>
+    <script src="js/angular-ui-router.js"></script>
+    <script src="js/wizMarkdown.js"></script>
+    <script src="js/sha256.js"></script>
+    <script src="js/firepano.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/bootstrap-material-datetimepicker.js"></script>
+    <script src="bower_components/sir-trevor-js/sir-trevor.js"></script>
+
+</head>
+<body ng-controller="PageController as page" ng-cloak>
+<md-toolbar class="md-tall" id="cover">
+    <span flex></span>
+
+    <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" aria-label="Settings">
+            <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+        </md-button>
+        <h2>
+            <span>Toolbar with Icon Buttons</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label="Favorite">
+            <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
+        </md-button>
+        <md-button class="md-icon-button" aria-label="More">
+            <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+
+<navbar></navbar>
+<section ui-view></section>
+<footer class="blog-footer"></footer>
+<modal></modal>
+<ab-sharing></ab-sharing>
+<button class="material-cornerbutton material-launch info" type="button" ng-click="page.login()">
+    <i class="material-icons" ng-if="!page.isLoggedIn()">check</i>
+    <i class="material-icons" ng-if="page.isLoggedIn()">close</i>
+</button>
+<button class="material-cornerbutton material-scrolltop info" type="button"></button>
+
+
+<script type="application/javascript">
+    $.materialinputs.init();
+    $('body').materialScrollTop();
+</script>
+<script type="application/javascript" src="js/app.js"></script>
+<script type="application/javascript" src="js/app_query.js"></script>
+<script type="application/javascript" src="js/app_controller.js"></script>
+<script type="application/javascript" src="js/app_directive.js"></script>
+<script type="application/javascript" src="js/ab_categories.js"></script>
+<script type="application/javascript" src="js/ab_archives.js"></script>
+<script type="application/javascript" src="js/ab_sharing.js"></script>
+</body>
+</html>

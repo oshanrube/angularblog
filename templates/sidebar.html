@@ -1,0 +1,18 @@
+<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+    <div class="sidebar-module" ng-show="page.isHomePage()">
+        <div class="form-group">
+            <input type="text" class="form-control" ng-model="page.search_query" placeholder="Search">
+        </div>
+    </div>
+    <div class="sidebar-module">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h4>About</h4>
+
+                <p material-field="'about'"></p>
+            </div>
+        </div>
+    </div>
+    <ab-categories></ab-categories>
+    <ab-archives></ab-archives>
+</div>

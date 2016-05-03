@@ -1,0 +1,12 @@
+<div class="sidebar-module" ng-controller="abArchivesController as archives">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h4>Archives</h4>
+            <ol class="list-unstyled">
+                <li ng-repeat="month in archives.getMonths()">
+                    <a href="filter-date.html">{{ month.label }}</a>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>

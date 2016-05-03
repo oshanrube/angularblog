@@ -1,0 +1,34 @@
+<div class="navbar navbar-material-blog navbar-info navbar-absolute-top navbar-overlay" ng-controller="NavbarController as navbar">
+    <div class="navbar-image" style="background-image: url('img/travel/unsplash-1.jpg');background-position: center 30%;"></div>
+    <div class="navbar-wrapper container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" ui-sref="home">
+                <i class="material-icons">&#xE871;</i> <span>{{ navbar.getTitle() }}</span>
+            </a>
+        </div>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active dropdown" ng-repeat="(alias, item) in navbar.getNavbarItems()">
+                    <a href="#/{{ navbar.getLink(item) }}" data-target="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <span>{{ navbar.getLabel(item) }}</span><b ng-show="navbar.hasChildren(item)" class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu" ng-show="navbar.hasChildren(item)">
+                        <li ng-repeat="child in navbar.getChildren(item)">
+                            <a href="{{ navbar.getLink(child) }}">{{ navbar.getLabel(child) }}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ page.getSocial('facebook') }}"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="{{ page.getSocial('google') }}"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="{{ page.getSocial('twitter') }}"><i class="fa fa-twitter"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</div>

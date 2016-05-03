@@ -1,0 +1,29 @@
+<div id="modal" class="modal modal__bg" ng-controller="ModalController as modal">
+    <div class="modal__dialog">
+        <div class="modal__content">
+            <div class="modal__header">
+                <div class="modal__title">
+                    <h2 class="modal__title-text">Update URL and label for anchor</h2>
+                </div>
+
+                <span class="mdl-button mdl-button--icon mdl-js-button  material-icons  modal__close"></span>
+            </div>
+
+
+            <div class="modal__text">
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="modal.url" id="url" placeholder="Url">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" ng-model="modal.label" id="label" placeholder="Label">
+                </div>
+            </div>
+
+            <div class="modal__footer">
+                <button class="mdl-button mdl-button--colored mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="saveBtn">Save</button>
+                <button class="mdl-button mdl-button--colored mdl-js-button  modal__close" id="closeBtn">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

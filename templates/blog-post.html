@@ -1,0 +1,47 @@
+<section class="blog-post" ng-controller="PostController as post">
+    <div class="panel panel-default">
+        <img ng-src="{{ post.getData('image') }}" class="img-responsive"/>
+
+        <form ng-show="page.isLoggedIn()" method="post" id="image_{{ post.postid }}" action="#" data-fbref="{{ posts.getPostRef(post.postid) }}">
+            <textarea class="js-image-instance" name="post[{{ post.postid }}]"></textarea>
+        </form>
+
+        <div class="panel-body">
+            <div class="blog-post-content">
+                <h2 class="blog-post-title" material-title="post.post" postid="post.postid">{{ post.getData('title') }}</h2>
+            </div>
+
+            <div class="blog-post-meta">
+                <span material-categories="post.post" postid="post.postid"></span>
+
+                <p class="blog-post-date pull-right" material-datepicker="post.post" postid="post.postid"></p>
+            </div>
+            <div class="blog-post-content">
+                <form ng-show="page.isLoggedIn()" method="post" action="#" id="post_{{ post.postid }}">
+                    <textarea class="js-st-instance" name="post[{{ post.postid }}]">{{ post.getData('json') }}</textarea>
+                </form>
+
+                <form ng-show="page.isLoggedIn()">
+                    <textarea name="content" data-hidden-buttons="cmdPreview" data-provide="markdown" rows="10"></textarea>
+
+                    <div data-provide="markdown-preview"></div>
+                </form>
+                <div ng-show="!page.isLoggedIn()">
+                    <div ng-repeat="block in post.getData('json').data">
+                        <h2 ng-show="posts.isPostHeader(block)" markdown-to-html="posts.getPostContent(block)"></h2>
+
+                        <p ng-show="posts.isPostContent(block)" markdown-to-html="posts.getPostContent(block)"></p>
+
+                        <p ng-show="posts.isPostList(block)" markdown-to-html="posts.getPostContent(block)"></p>
+                    </div>
+                </div>
+
+                <a class="btn btn-info" ng-hide="post.isReadmorePage()" ui-sref="post({alias: post.getData('alias') })">Read more</a>
+                <a class="blog-post-share pull-right" ng-click="post.toggleSharingBox()">
+                    <i class="material-icons">&#xE80D;</i>
+                </a>
+            </div>
+        </div>
+        <ab-sharing></ab-sharing>
+    </div>
+</section>

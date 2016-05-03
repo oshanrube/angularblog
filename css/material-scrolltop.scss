@@ -1,0 +1,110 @@
+//colors
+$black_50: rgba(0, 0, 0, 0.5);
+$color_gossamer_approx: #009688;
+$color_teal_approx: #00897b;
+$white: #fff;
+
+//urls
+$url_0: url(../icons/top-arrow.svg);
+
+//@extend-elements
+//original selectors
+//.material-scrolltop, .material-scrolltop::before
+%extend_1 {
+  background-image: $url_0;
+  background-position: center 50%;
+  background-repeat: no-repeat;
+}
+
+.material-cornerbutton {
+  display: block;
+  position: fixed;
+  width: 56px;
+  height: 56px;
+  bottom: 23px;
+  right: 23px;
+  padding: 0;
+  overflow: hidden;
+  outline: none;
+  border: none;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 2px;
+  //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+  box-shadow: 0 3px 10px $black_50;
+  cursor: hand;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 50%;
+  background: $color_gossamer_approx;
+  //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+  transition: all 0.3s cubic-bezier(0.25, 0.25, 0, 1);
+  @extend %extend_1;
+  &:hover {
+    background-color: $color_gossamer_approx;
+    text-decoration: none;
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: 0 3px 10px $black_50, 0 3px 15px $black_50;
+  }
+  &:active::before {
+    width: 120%;
+    padding-top: 120%;
+    //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+    transition: all 0.2s ease-out;
+  }
+  span {
+    display: block;
+    font-size: 25px;
+    color: $white;
+  }
+}
+
+.material-cornerbutton::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+  transform: translate(-50%, -50%);
+  content: "";
+  width: 0;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 100%;
+  background: $color_teal_approx;
+  @extend %extend_1;
+}
+
+.material-scrolltop {
+  right: 101px;
+  width: 0;
+  height: 0;
+  &.reveal {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+button.material-cornerbutton.material-launch,
+button.material-cornerbutton.material-launch:hover,
+button.material-cornerbutton.material-launch:before {
+  background-image: none;
+}
+
+button.material-cornerbutton.material-launch[disabled] {
+  background-color: #ccc;
+  color: #9C9C9C;
+}
+
+.new-post {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 30px;
+  display: inline-block;
+  background-color: #fff;
+  border: 1px solid #ddd;
+
+  color: rgb(255, 64, 129);
+  font-weight: 500;
+  &:hover {
+    text-decoration: none;
+  }
+}

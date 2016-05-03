@@ -1,0 +1,77 @@
+.material-cornerbutton, .material-cornerbutton::before {
+  background-image: url(../icons/top-arrow.svg);
+  background-position: center 50%;
+  background-repeat: no-repeat; }
+
+.material-cornerbutton {
+  display: block;
+  position: fixed;
+  width: 56px;
+  height: 56px;
+  bottom: 23px;
+  right: 23px;
+  padding: 0;
+  overflow: hidden;
+  outline: none;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+  cursor: hand;
+  border-radius: 50%;
+  background: #009688;
+  transition: all 0.3s cubic-bezier(0.25, 0.25, 0, 1); }
+  .material-cornerbutton:hover {
+    background-color: #009688;
+    text-decoration: none;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5), 0 3px 15px rgba(0, 0, 0, 0.5); }
+  .material-cornerbutton:active::before {
+    width: 120%;
+    padding-top: 120%;
+    transition: all 0.2s ease-out; }
+  .material-cornerbutton span {
+    display: block;
+    font-size: 25px;
+    color: #fff; }
+
+.material-cornerbutton::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  content: "";
+  width: 0;
+  border-radius: 100%;
+  background: #00897b; }
+
+.material-scrolltop {
+  right: 101px;
+  width: 0;
+  height: 0; }
+  .material-scrolltop.reveal {
+    width: 56px;
+    height: 56px; }
+
+button.material-cornerbutton.material-launch,
+button.material-cornerbutton.material-launch:hover,
+button.material-cornerbutton.material-launch:before {
+  background-image: none; }
+
+button.material-cornerbutton.material-launch[disabled] {
+  background-color: #ccc;
+  color: #9C9C9C; }
+
+.new-post {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 30px;
+  display: inline-block;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  color: #ff4081;
+  font-weight: 500; }
+  .new-post:hover {
+    text-decoration: none; }
+
+/*# sourceMappingURL=material-scrolltop.css.map */

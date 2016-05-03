@@ -1,0 +1,20 @@
+<div class="container blog-content" ng-controller="PostsController as posts">
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+            <nav ng-show="page.isLoggedIn()">
+                <a class="withripple new-post" href="#" ng-click="posts.addNewPost()">New Post</a>
+            </nav>
+            <div class="row">
+                <div class="col-sm-12">
+                    <blog-post ng-repeat="(postid, blogpost) in posts.getPosts(page.search_query)"></blog-post>
+                </div>
+            </div>
+            <nav ng-show="posts.hasMore()">
+                <ul class="pager">
+                    <li><a class="withripple read-more" href="#">Load More</a></li>
+                </ul>
+            </nav>
+        </div>
+        <sidebar></sidebar>
+    </div>
+</div>

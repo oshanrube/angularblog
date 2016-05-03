@@ -1,0 +1,7 @@
+{
+  "name": "angular-blog",
+  "dependencies": {
+    "sir-trevor-js": "0.4.3",
+    "ng-showdown": "^1.1.0"
+  }
+}

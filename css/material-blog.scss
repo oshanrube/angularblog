@@ -1,0 +1,616 @@
+//colors
+$black_30: rgba(0, 0, 0, 0.3);
+$black_12: rgba(0, 0, 0, 0.12);
+$color_gossamer_approx: #009688;
+$white: #fff;
+$black_20: rgba(0, 0, 0, .2);
+$color_cerulean_approx: #03a9f4;
+$color_mine_shaft_approx: #333;
+$color_mountain_mist_approx: #999;
+$color_gallery_approx: #ededed;
+$black_19: rgba(0, 0, 0, 0.19);
+$black_23: rgba(0, 0, 0, 0.23);
+$color_alabaster_approx: #f9f9f9;
+$mercury: #e5e5e5;
+$color_gray_approx: #7f7f7f;
+$black: #000;
+$color_cararra_approx: #ebebeb;
+$color_link_water_approx: #d9dcf0;
+$color_jagged_ice_approx: #cdeae7;
+$color_willow_brook_approx: #dbefdc;
+$color_onahau_approx: #cdeefc;
+$color_peach_schnapps_approx: #ffded3;
+$color_star_dust_approx: #9e9e9e;
+$color_tapa_approx: #757575;
+$color_cerulean_blue_approx: #3f51b5;
+$color_governor_bay_approx: #3949ab;
+$color_teal_approx: #00897b;
+$color_apple_approx: #4caf50;
+$color_flamingo_approx: #ff5722;
+$color_pomegranate_approx: #f4511e;
+$color_red_orange_approx: #f44336;
+$color_cinnabar_approx: #e53935;
+
+//urls
+$url_0: url(../img/photo-1449452514032-f1eba6007f52.html);
+$url_1: url(../icons/top-arrow.svg);
+$url_2: url(../img/landing/macbook.png);
+
+//@extend-elements
+//original selectors
+//.blog-comments-title, .blog-post-title
+%extend_1 {
+  margin-bottom: 5px;
+  font-size: 24px;
+  font-weight: 400;
+  color: $color_mine_shaft_approx;
+}
+
+//original selectors
+//.material-cornerbutton.default, .material-cornerbutton.default:hover, .material-cornerbutton.default::before, .material-cornerbutton.inverse, .material-cornerbutton.inverse:hover, .material-cornerbutton.inverse::before, .material-cornerbutton.primary, .material-cornerbutton.primary:hover, .material-cornerbutton.primary::before, .material-cornerbutton.success, .material-cornerbutton.success:hover, .material-cornerbutton.success::before, .material-cornerbutton.info, .material-cornerbutton.info:hover, .material-cornerbutton.info::before, .material-cornerbutton.warning, .material-cornerbutton.warning:hover, .material-cornerbutton.warning::before, .material-cornerbutton.danger, .material-cornerbutton.danger:hover, .material-cornerbutton.danger::before
+%extend_2 {
+  background-image: $url_1;
+  background-position: center 50%;
+  background-repeat: no-repeat;
+}
+
+.pace {
+  pointer-events: none;
+  //Instead of the line below you could use @include user-select($select)
+  user-select: none;
+  .pace-activity {
+    display: block;
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $color_gossamer_approx;
+    //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+    transition: transform 0.4s;
+    //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+    transform: translateX(0%) translateY(-100%);
+    pointer-events: none;
+  }
+  .pace-activity::after {
+    //Instead of the line below you could use @include box-sizing($bs)
+    box-sizing: border-box;
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    display: block;
+    border: 5px solid $white;
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 50%;
+    content: '';
+    top: 50%;
+    margin-left: -20px;
+    width: 40px;
+    height: 40px;
+    border-top-color: $black_20;
+    animation: pace-theme-corner-indicator-spin 1.2s linear infinite;
+  }
+  &.pace-active .pace-activity {
+    //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+    transform: translateX(0%) translateY(0%);
+  }
+}
+
+@-webkit-keyframes pace-theme-corner-indicator-spin {
+  0% {
+  }
+  100% {
+  }
+}
+
+@keyframes pace-theme-corner-indicator-spin {
+  0% {
+    //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+    transform: rotate(0deg);
+  }
+  100% {
+    //Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+    transform: rotate(359deg);
+  }
+}
+
+a {
+  color: $color_cerulean_approx;
+  &:hover {
+    color: $color_cerulean_approx;
+  }
+  &:focus {
+    color: $color_cerulean_approx;
+  }
+}
+
+@media(min-width: 1200px) {
+  .container {
+    width: 1040px;
+  }
+  .macbook {
+    padding: 10px 54px 10px 57px;
+    height: 274px;
+    .inner {
+      height: 241px;
+    }
+  }
+}
+
+.form-group {
+  margin: 0;
+  &.form-group-sm {
+    &.label-floating label.control-label {
+      font-size: 13px;
+      top: -16px;
+    }
+    &.label-placeholder label.control-label {
+      font-size: 13px;
+      top: -16px;
+    }
+  }
+}
+
+.label {
+  font-size: 12px;
+  padding: 4px 12px;
+  //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+  border-radius: 16px;
+  font-weight: 400;
+  //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+  transition: all 0.15s ease;
+}
+
+.material-icons {
+  &.md-18 {
+    font-size: 18px;
+  }
+  &.md-24 {
+    font-size: 24px;
+  }
+  &.md-36 {
+    font-size: 36px;
+  }
+  &.md-48 {
+    font-size: 48px;
+  }
+}
+
+.page-header {
+  margin: 0 0 40px;
+  h2 {
+    margin: 0;
+  }
+}
+
+.blog-main {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.blog-content {
+  padding-top: 320px;
+}
+
+.sidebar-module {
+  margin: 0 auto 30px auto;
+  &:first-child {
+    margin-top: 0;
+  }
+  h4 {
+    margin-bottom: 22px;
+  }
+  .categories li {
+    margin: 12px auto;
+  }
+}
+
+.sidebar-module-inset {
+  p:last-child {
+    margin-bottom: 0;
+  }
+  ul:last-child {
+    margin-bottom: 0;
+  }
+  ol:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.pager {
+  margin-bottom: 60px;
+  text-align: left;
+  > li > a {
+    width: 140px;
+    padding: 10px 20px;
+    text-align: center;
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 30px;
+  }
+  li > a.read-more {
+    width: 100%;
+  }
+}
+
+.blog-post {
+  margin-bottom: 30px;
+  a {
+    text-decoration: none;
+  }
+  p {
+    font-size: 13px;
+    font-weight: 400;
+  }
+  .panel-body {
+    padding: 0;
+  }
+  .panel {
+    //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+    transition: all 0.3s ease;
+    > img {
+      //Instead of the line below you could use @include border-top-left-radius($radius)
+      border-top-left-radius: 2px;
+      //Instead of the line below you could use @include border-top-right-radius($radius)
+      border-top-right-radius: 2px;
+    }
+  }
+  &:hover .panel {
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: 0 10px 20px $black_19, 0 6px 6px $black_23;
+  }
+}
+
+.blog-comments-title {
+  @extend %extend_1;
+}
+
+.blog-post-title {
+  @extend %extend_1;
+}
+
+.blog-post-meta {
+  padding: 16px 22px;
+  color: $color_mountain_mist_approx;
+  display: block;
+  border-bottom: 1px solid $color_gallery_approx;
+}
+
+.blog-post-date {
+  margin: 6px auto;
+}
+
+.blog-post-share {
+  margin: 10px auto;
+}
+
+.blog-post-content {
+  padding: 16px 22px;
+  p {
+    color: $color_mountain_mist_approx;
+    margin: 18px auto;
+  }
+  .btn {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+}
+
+.blog-comments {
+  .panel {
+    //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+    transition: all 0.3s ease;
+  }
+  &:hover .panel {
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: 0 10px 20px $black_19, 0 6px 6px $black_23;
+  }
+}
+
+.blog-footer {
+  padding: 40px 0;
+  background-color: $color_alabaster_approx;
+  border-top: 1px solid $mercury;
+  a {
+    color: $color_gray_approx;
+    text-decoration: none;
+    &:hover {
+      color: $black;
+    }
+    &:focus {
+      color: $black;
+    }
+    &:active {
+      color: $black;
+    }
+  }
+  .brand {
+    color: $color_gray_approx;
+    margin-bottom: 10px;
+  }
+  .offset {
+    margin: 4px auto;
+  }
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.navbar {
+  z-index: 999;
+  .navbar-wrapper {
+    padding-top: 180px;
+  }
+  .navbar-nav > .active > a {
+    background-color: transparent;
+    font-weight: 500;
+    &:focus {
+      background-color: transparent;
+      font-weight: 500;
+    }
+    &:hover {
+      background-color: transparent;
+      font-weight: 500;
+    }
+  }
+}
+
+.navbar-image {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 240px;
+  z-index: 0;
+  background-repeat: no-repeat;
+  background-position: center 65%;
+  background-attachment: scroll;
+  background-size: cover;
+  background-image: $url_0;
+}
+
+.navbar-absolute-top {
+  width: 100%;
+  position: absolute;
+}
+
+@media(min-width: 768px) {
+  .navbar-overlay {
+    &.navbar-absolute-top .navbar-nav > li {
+      background: $black_30;
+      //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+      transition: all 0.1s ease;
+    }
+    &.navbar-fixed-top li {
+      background: rgba(0, 0, 0, 0);
+      //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+      transition: all 0.1s ease;
+    }
+  }
+  .macbook {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: scroll;
+    background-size: cover;
+    background-image: $url_2;
+    overflow: hidden;
+    padding: 9px 38px 9px 40px;
+    height: 190px;
+    .inner {
+      height: 163px;
+      overflow: hidden;
+      .demo {
+        height: 100%;
+        overflow: hidden;
+        //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+        transition: all 2.4s ease 0s;
+        &:hover {
+          background-position: 0 100%;
+        }
+      }
+    }
+  }
+  .navbar-absolute-top .navbar-right {
+    margin-right: -30px;
+  }
+  #landing-header h1 {
+    font-size: 50px;
+  }
+}
+
+.label-light {
+  color: $color_mine_shaft_approx;
+  background-color: $color_cararra_approx;
+  &.label-default {
+    background-color: $color_cararra_approx;
+  }
+  &.label-inverse {
+    background-color: $color_link_water_approx;
+  }
+  &.label-primary {
+    background-color: $color_jagged_ice_approx;
+  }
+  &.label-success {
+    background-color: $color_willow_brook_approx;
+  }
+  &.label-info {
+    background-color: $color_onahau_approx;
+  }
+  &.label-warning {
+    background-color: $color_peach_schnapps_approx;
+  }
+  &.label-danger {
+    background-color: $color_peach_schnapps_approx;
+  }
+}
+
+.material-cornerbutton {
+  &.default {
+    background-color: $color_star_dust_approx;
+    @extend %extend_2;
+    &:hover {
+      background-color: $color_star_dust_approx;
+      @extend %extend_2;
+    }
+  }
+  &.default::before {
+    background-color: $color_tapa_approx;
+    @extend %extend_2;
+  }
+  &.inverse {
+    background-color: $color_cerulean_blue_approx;
+    @extend %extend_2;
+    &:hover {
+      background-color: $color_cerulean_blue_approx;
+      @extend %extend_2;
+    }
+  }
+  &.inverse::before {
+    background-color: $color_governor_bay_approx;
+    @extend %extend_2;
+  }
+  &.primary {
+    background-color: $color_gossamer_approx;
+    @extend %extend_2;
+    &:hover {
+      background-color: $color_gossamer_approx;
+      @extend %extend_2;
+    }
+  }
+  &.primary::before {
+    background-color: $color_teal_approx;
+    @extend %extend_2;
+  }
+  &.success {
+    background-color: $color_apple_approx;
+    @extend %extend_2;
+    &:hover {
+      background-color: $color_apple_approx;
+      @extend %extend_2;
+    }
+  }
+  &.success::before {
+    background-color: $color_apple_approx;
+    @extend %extend_2;
+  }
+  &.info {
+    background-color: $color_cerulean_approx;
+    @extend %extend_2;
+    &:hover {
+      background-color: $color_cerulean_approx;
+      @extend %extend_2;
+    }
+  }
+  &.info::before {
+    background-color: $color_cerulean_approx;
+    @extend %extend_2;
+  }
+  &.warning {
+    background-color: $color_flamingo_approx;
+    @extend %extend_2;
+    &:hover {
+      background-color: $color_flamingo_approx;
+      @extend %extend_2;
+    }
+  }
+  &.warning::before {
+    background-color: $color_pomegranate_approx;
+    @extend %extend_2;
+  }
+  &.danger {
+    background-color: $color_red_orange_approx;
+    @extend %extend_2;
+    &:hover {
+      background-color: $color_red_orange_approx;
+      @extend %extend_2;
+    }
+  }
+  &.danger::before {
+    background-color: $color_cinnabar_approx;
+    @extend %extend_2;
+  }
+}
+
+#map {
+  width: 100%;
+  height: 400px;
+}
+
+#landing-header {
+  margin: 50px auto;
+  h1 {
+    font-size: 40px;
+  }
+  i {
+    color: $color_gray_approx;
+    font-size: 50px;
+  }
+}
+
+#landing-styles {
+  padding: 26px 0 32px;
+  background-color: $color_alabaster_approx;
+  .style {
+    margin: 20px auto;
+  }
+}
+
+#landing-footer {
+  margin: 50px auto;
+}
+
+.macbook {
+  display: block;
+  .inner .demo {
+    display: block;
+    height: 340px;
+    background-size: 100% auto;
+    background-position: 0 0;
+  }
+}
+
+@media(max-width: 767px) {
+  .macbook .inner .demo {
+    //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+    border-radius: 2px;
+    border: 0;
+    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: 0 1px 6px 0 $black_12, 0 1px 6px 0 $black_12;
+  }
+}
+
+@media(min-width: 992px) {
+  .macbook {
+    padding: 11px 49px 11px 51px;
+    height: 255px;
+    .inner {
+      height: 220px;
+    }
+  }
+}
+
+.editable {
+  cursor: pointer;
+}
+
+[contenteditable="true"] {
+  border: 1px solid #ccc;
+}
+
+span.label {
+
+  .delete, .add {
+    margin-left: 5px;
+    color: #ccc;
+    background: #FCFCFC;
+    padding: 0px 4px;
+    border-radius: 13px;
+    cursor: pointer;
+  }
+  .delete:hover,
+  .add:hover {
+    color: #878787;
+    background: #ccc;
+  }
+}

@@ -1,0 +1,5 @@
+<div class="sharing-bar row" ng-show="post.isSharingBoxVisible()" ng-controller="abSharingController as sharing">
+    <a class="col-md-3" ng-repeat="icon in sharing.getIcons()" ng-click="sharing.openLink(icon, post.getData('alias'))" title="{{ icon.name }}">
+        <i class="zmdi zmdi-hc-fw {{ icon.icon }}"></i>
+    </a>
+</div>
