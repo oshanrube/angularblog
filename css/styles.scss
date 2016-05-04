@@ -55,6 +55,14 @@ body {
       margin: 0;
       padding: 15px 0;
       border-top: 1px solid #ccc;
+
+      &.ng-hide-remove {
+        animation: fadeIn 0.5s;
+      }
+      &.ng-hide-add {
+        animation: fadeOut 1s;
+      }
+
       a {
         cursor: pointer;
         padding: 5px 0;

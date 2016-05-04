@@ -2,7 +2,7 @@
     var app = angular.module("angularBlog",
         [
             'app.controllers', 'app.directives', 'app.api_query',//base angular
-            'ui.router', 'ngSanitize', "firebase", 'ngStorage', 'wiz.markdown', 'ngMaterial', //dependencies
+            'ui.router', 'ngAnimate', 'ngSanitize', "firebase", 'ngStorage', 'wiz.markdown', 'ngMaterial', //dependencies
             'ab.categories', 'ab.archives', 'ab.sharing' //plugins
         ])
         .run(function ($rootScope, $firebaseObject, $localStorage, API) {

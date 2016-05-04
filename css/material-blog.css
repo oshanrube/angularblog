@@ -128,21 +128,31 @@ a {
   .pager li > a.read-more {
     width: 100%; }
 
-.blog-post {
+blog-post.ng-enter {
+  -webkit-animation: fadeIn 1s;
+  -moz-animation: fadeIn 1s;
+  -ms-animation: fadeIn 1s;
+  animation: fadeIn 1s; }
+blog-post.ng-leave {
+  -webkit-animation: fadeOut 1s;
+  -moz-animation: fadeOut 1s;
+  -ms-animation: fadeOut 1s;
+  animation: fadeOut 1s; }
+blog-post .blog-post {
   margin-bottom: 30px; }
-  .blog-post a {
+  blog-post .blog-post a {
     text-decoration: none; }
-  .blog-post p {
+  blog-post .blog-post p {
     font-size: 13px;
     font-weight: 400; }
-  .blog-post .panel-body {
+  blog-post .blog-post .panel-body {
     padding: 0; }
-  .blog-post .panel {
+  blog-post .blog-post .panel {
     transition: all 0.3s ease; }
-    .blog-post .panel > img {
+    blog-post .blog-post .panel > img {
       border-top-left-radius: 2px;
       border-top-right-radius: 2px; }
-  .blog-post:hover .panel {
+  blog-post .blog-post:hover .panel {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
 
 .blog-post-meta {

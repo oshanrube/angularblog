@@ -233,31 +233,46 @@ a {
   }
 }
 
-.blog-post {
-  margin-bottom: 30px;
-  a {
-    text-decoration: none;
+blog-post {
+  &.ng-enter {
+    -webkit-animation: fadeIn 1s;
+    -moz-animation: fadeIn 1s;
+    -ms-animation: fadeIn 1s;
+    animation: fadeIn 1s;
   }
-  p {
-    font-size: 13px;
-    font-weight: 400;
+  &.ng-leave {
+    -webkit-animation: fadeOut 1s;
+    -moz-animation: fadeOut 1s;
+    -ms-animation: fadeOut 1s;
+    animation: fadeOut 1s;
   }
-  .panel-body {
-    padding: 0;
-  }
-  .panel {
-    //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
-    transition: all 0.3s ease;
-    > img {
-      //Instead of the line below you could use @include border-top-left-radius($radius)
-      border-top-left-radius: 2px;
-      //Instead of the line below you could use @include border-top-right-radius($radius)
-      border-top-right-radius: 2px;
+
+  .blog-post {
+    margin-bottom: 30px;
+    a {
+      text-decoration: none;
     }
-  }
-  &:hover .panel {
-    //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
-    box-shadow: 0 10px 20px $black_19, 0 6px 6px $black_23;
+    p {
+      font-size: 13px;
+      font-weight: 400;
+    }
+    .panel-body {
+      padding: 0;
+    }
+    .panel {
+      //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+      transition: all 0.3s ease;
+      > img {
+        //Instead of the line below you could use @include border-top-left-radius($radius)
+        border-top-left-radius: 2px;
+        //Instead of the line below you could use @include border-top-right-radius($radius)
+        border-top-right-radius: 2px;
+      }
+    }
+    &:hover .panel {
+      //Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+      box-shadow: 0 10px 20px $black_19, 0 6px 6px $black_23;
+    }
   }
 }
 

@@ -29,6 +29,10 @@ body section.blog-post div.sharing-bar {
   margin: 0;
   padding: 15px 0;
   border-top: 1px solid #ccc; }
+  body section.blog-post div.sharing-bar.ng-hide-remove {
+    animation: fadeIn 0.5s; }
+  body section.blog-post div.sharing-bar.ng-hide-a {
+    animation: fadeOut 1s; }
   body section.blog-post div.sharing-bar a {
     cursor: pointer;
     padding: 5px 0;
