@@ -5,6 +5,9 @@ angular.module('app.api_query', [])
             getFirebaseRef: function () {
                 return baseurl + "/data";
             },
+            getFirebaseAdminRef: function () {
+                return baseurl + "/admin";
+            },
             getFirebasePostRef: function () {
                 return baseurl + "/data/posts";
             }

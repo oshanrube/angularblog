@@ -18,6 +18,9 @@
                 $('#firebase-loading').remove();
             });
 
+            var FirebaseAdminRef = new Firebase(API.getFirebaseAdminRef());
+            // download the data into a local object
+            var syncObject = $firebaseObject(FirebaseAdminRef);
 
             $rootScope.getData = function () {
                 if ($rootScope.data !== undefined) {
@@ -32,6 +35,10 @@
                     return data;
                 }
             };
+
+            $rootScope.isAdmin = function () {
+                return ($rootScope.localStorage.authData.uid == syncObject.$value);
+            }
 
         }).config(function ($stateProvider, $urlRouterProvider) {
             // Now set up the states

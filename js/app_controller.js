@@ -48,7 +48,7 @@ angular.module('app.controllers', [])
         };
 
         this.isLoggedIn = function () {
-            return ($scope.localStorage.authData !== undefined && $scope.localStorage.authData.expires > Math.floor(Date.now() / 1000));
+            return ($scope.localStorage.authData !== undefined && $scope.localStorage.authData.expires > Math.floor(Date.now() / 1000) && $scope.isAdmin());
         };
 
         this.isHomePage = function () {
