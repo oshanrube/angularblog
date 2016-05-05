@@ -1,0 +1,54 @@
+<section class="blog-post" ng-controller="PostController as post">
+    <button title="Delete post" ng-show="page.isLoggedIn()" class="material-cornerbutton material-delete info" type="button" ng-click="post.delete()">
+        <i class="material-icons ng-scope" ng-if="page.isLoggedIn()">close</i>
+    </button>
+    <button title="Edit post" ng-hide="!page.isLoggedIn() || post.isEditMode()" class="material-cornerbutton material-edit info" type="button" ng-click="post.edit($event)">
+        <i class="material-icons ng-scope" ng-if="page.isLoggedIn()">edit</i>
+    </button>
+    <button title="Finish editing" ng-show="page.isLoggedIn() && post.isEditMode()" class="material-cornerbutton material-edit info" type="button" ng-click="post.save()">
+        <i class="material-icons ng-scope" ng-if="page.isLoggedIn()">save</i>
+    </button>
+    <button title="Publish post" ng-hide="!page.isLoggedIn() || post.isPostPublished()" class="material-cornerbutton material-publish info" type="button" ng-click="post.publish()">
+        <i class="material-icons ng-scope" ng-if="page.isLoggedIn()">done</i>
+    </button>
+    <button title="Unpublish post" ng-show="page.isLoggedIn() && post.isPostPublished()" class="material-cornerbutton material-publish info" type="button" ng-click="post.unPublish()">
+        <i class="material-icons ng-scope" ng-if="page.isLoggedIn()">border_color</i>
+    </button>
+
+    <div class="panel panel-default">
+        <form action="/file-upload" ng-show="post.isEditMode()" data-fbref="{{post.getFBref()}}" data-postid="{{ post.postid }}" data-target="cover" id="coverimage-dropzone" class="dropzone needsclick dz-clickable">
+            <div class="dz-message needsclick">
+                <img ng-src="{{ post.getData('image') }}" class="img-responsive coverimage"/>
+                Drop files here or click to upload.
+            </div>
+            <div class="fallback">
+                <input name="file" type="file" multiple/>
+            </div>
+        </form>
+        <img ng-src="{{ post.getData('image') }}" ng-hide="post.isEditMode() || !post.getData('image')" class="img-responsive coverimage"/>
+
+        <div class="panel-body">
+            <div class="blog-post-content" ng-class="post.getData('state') == 'draft'?'draft':''">
+                <h2 class="blog-post-title" material-title="post.post" postid="post.postid">{{ post.getData('title') }}</h2>
+            </div>
+
+            <div class="blog-post-meta">
+                <material-categories categories="post.getData('categories')" editmode="post.isEditMode()"></material-categories>
+
+                <p class="blog-post-date pull-right" material-datepicker="post.post" postid="post.postid"></p>
+            </div>
+            <div class="blog-post-content">
+                <form ng-show="post.isEditMode()" data-fbref="{{post.getFBref()}}" data-postid="{{ post.postid }}" data-target="images">
+                    <textarea name="content" data-hidden-buttons="cmdPreview" data-provide="markdown" rows="10">{{ post.getData('content') }}</textarea>
+                </form>
+                <div class="md-content" ng-hide="post.isEditMode()" ng-bind-html="post.contentHTML"></div>
+
+                <a class="btn btn-info" ng-hide="post.isReadmorePage()" ui-sref="post({alias: post.getData('alias') })">Read more</a>
+                <a class="blog-post-share pull-right" ng-click="post.toggleSharingBox()">
+                    <i class="material-icons">&#xE80D;</i>
+                </a>
+            </div>
+        </div>
+        <ab-sharing></ab-sharing>
+    </div>
+</section>

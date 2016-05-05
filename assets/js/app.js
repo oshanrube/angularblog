@@ -11,11 +11,22 @@
             $rootScope.FirebaseRef = new Firebase(API.getFirebaseRef());
             // download the data into a local object
             $rootScope.syncObject = $firebaseObject($rootScope.FirebaseRef);
+
+            $rootScope.syncObject.$watch(function () {
+                console.log("data changed!");
+            });
+
+            //$rootScope.syncObject.$save().then(function (ref) {
+            //    console.log("data saved!");
+            //}, function (error) {
+            //    console.log("Error:", error);
+            //});
             // synchronize the object with a three-way data binding
             // click on `index.html` above to see it used in the DOM!
             $rootScope.syncObject.$bindTo($rootScope, "data").then(function () {
                 //stop loading
                 $('#firebase-loading').remove();
+                console.log("data loaded!");
             });
 
             var FirebaseAdminRef = new Firebase(API.getFirebaseAdminRef());
@@ -45,11 +56,11 @@
             $stateProvider
                 .state('home', {
                     url: "/",
-                    templateUrl: "partials/home.html"
+                    templateUrl: "assets/partials/home.html"
                 })
                 .state('post', {
                     url: "/post/:alias",
-                    templateUrl: "partials/post.html"
+                    templateUrl: "assets/partials/post.html"
                 });
             $urlRouterProvider.otherwise("/");
         });

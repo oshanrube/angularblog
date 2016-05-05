@@ -139,27 +139,55 @@ blog-post.ng-leave {
   -ms-animation: fadeOut 1s;
   animation: fadeOut 1s; }
 blog-post .blog-post {
+  position: relative;
   margin-bottom: 30px; }
+  blog-post .blog-post button.material-cornerbutton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: -23px;
+    margin-right: -12px;
+    z-index: 1;
+    background-image: none; }
+    blog-post .blog-post button.material-cornerbutton:hover {
+      background-image: none; }
+  blog-post .blog-post button.material-edit {
+    right: 66px; }
+  blog-post .blog-post button.material-publish {
+    right: 132px; }
   blog-post .blog-post a {
     text-decoration: none; }
   blog-post .blog-post p {
     font-size: 13px;
     font-weight: 400; }
+  blog-post .blog-post .blog-post-meta {
+    padding: 16px 22px;
+    color: #999;
+    display: inline-block;
+    width: 100%;
+    border-bottom: 1px solid #ededed; }
+    blog-post .blog-post .blog-post-meta > material-categories {
+      width: 75%;
+      display: inline-block; }
+      blog-post .blog-post .blog-post-meta > material-categories > div > span {
+        display: inline-block; }
+    blog-post .blog-post .blog-post-meta > p {
+      width: 25%;
+      display: inline-block;
+      vertical-align: top;
+      margin-top: 0;
+      font-size: 11px;
+      text-align: right; }
   blog-post .blog-post .panel-body {
     padding: 0; }
   blog-post .blog-post .panel {
     transition: all 0.3s ease; }
     blog-post .blog-post .panel > img {
+      width: 100%;
       border-top-left-radius: 2px;
       border-top-right-radius: 2px; }
   blog-post .blog-post:hover .panel {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23); }
-
-.blog-post-meta {
-  padding: 16px 22px;
-  color: #999;
-  display: block;
-  border-bottom: 1px solid #ededed; }
 
 .blog-post-date {
   margin: 6px auto; }
@@ -169,6 +197,8 @@ blog-post .blog-post {
 
 .blog-post-content {
   padding: 16px 22px; }
+  .blog-post-content.draft {
+    background: #eee; }
   .blog-post-content p {
     color: #999;
     margin: 18px auto; }

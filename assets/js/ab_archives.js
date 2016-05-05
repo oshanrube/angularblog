@@ -2,7 +2,7 @@ angular.module('ab.archives', [])
     .directive('abArchives', function (API, User, $firebaseObject, $rootScope) {
         return {
             restrict: 'E',
-            templateUrl: 'templates/ab-archives.html'
+            templateUrl: 'assets/templates/ab-archives.html'
         }
     })
     .controller('abArchivesController', function ($scope) {

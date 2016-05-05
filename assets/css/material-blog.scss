@@ -234,6 +234,7 @@ a {
 }
 
 blog-post {
+
   &.ng-enter {
     -webkit-animation: fadeIn 1s;
     -moz-animation: fadeIn 1s;
@@ -248,7 +249,28 @@ blog-post {
   }
 
   .blog-post {
+    position: relative;
     margin-bottom: 30px;
+
+    button.material-cornerbutton {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: -23px;
+      margin-right: -12px;
+      z-index: 1;
+      background-image: none;
+      &:hover {
+        background-image: none;
+      }
+    }
+    button.material-edit {
+      right: 66px;
+    }
+    button.material-publish {
+      right: 132px;
+    }
+
     a {
       text-decoration: none;
     }
@@ -256,6 +278,30 @@ blog-post {
       font-size: 13px;
       font-weight: 400;
     }
+
+    .blog-post-meta {
+      padding: 16px 22px;
+      color: $color_mountain_mist_approx;
+      display: inline-block;
+      width: 100%;
+      border-bottom: 1px solid $color_gallery_approx;
+      > material-categories {
+        width: 75%;
+        display: inline-block;
+        > div > span {
+          display: inline-block;
+        }
+      }
+      > p {
+        width: 25%;
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 0;
+        font-size: 11px;
+        text-align: right;
+      }
+    }
+
     .panel-body {
       padding: 0;
     }
@@ -263,6 +309,7 @@ blog-post {
       //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
       transition: all 0.3s ease;
       > img {
+        width: 100%;
         //Instead of the line below you could use @include border-top-left-radius($radius)
         border-top-left-radius: 2px;
         //Instead of the line below you could use @include border-top-right-radius($radius)
@@ -284,13 +331,6 @@ blog-post {
   @extend %extend_1;
 }
 
-.blog-post-meta {
-  padding: 16px 22px;
-  color: $color_mountain_mist_approx;
-  display: block;
-  border-bottom: 1px solid $color_gallery_approx;
-}
-
 .blog-post-date {
   margin: 6px auto;
 }
@@ -301,6 +341,10 @@ blog-post {
 
 .blog-post-content {
   padding: 16px 22px;
+
+  &.draft {
+    background: #eee;
+  }
   p {
     color: $color_mountain_mist_approx;
     margin: 18px auto;

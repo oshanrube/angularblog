@@ -12,6 +12,7 @@ developers can add components as simple directive files
 * clone the repo
 * create an application in firebase (http://firebaseio.com)
 * edit the `js/app_query.js` and update the base url with the firebase app url
+* edit the index.html and update the `base` tag in the header to your host address
 * import the rules for the application from `docs/firebase-rules.json`
 * import the db structure from `docs/rube-angular-blog-export.json` and edit what ever is needed
 * update the `admin` user with your gmail id

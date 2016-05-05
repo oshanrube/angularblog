@@ -2,7 +2,7 @@ angular.module('ab.sharing', [])
     .directive('abSharing', function (API, User, $firebaseObject, $rootScope) {
         return {
             restrict: 'E',
-            templateUrl: 'templates/ab-sharing.html'
+            templateUrl: 'assets/templates/ab-sharing.html'
         }
     })
     .controller('abSharingController', function ($scope, $state) {

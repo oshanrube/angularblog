@@ -2,7 +2,7 @@ angular.module('ab.categories', [])
     .directive('abCategories', function (API, User, $firebaseObject, $rootScope) {
         return {
             restrict: 'E',
-            templateUrl: 'templates/ab-categories.html'
+            templateUrl: 'assets/templates/ab-categories.html'
         }
     })
     .controller('abCategoriesController', function ($scope) {

@@ -1,0 +1,9 @@
+<div ng-controller="materialCategories as categoriesCntlr">
+    <span ng-repeat="category in categoriesCntlr.getCategories() track by $index" class="label label-light label-success">
+        <span class="lblname" contentEditable="{{ categoriesCntlr.isEditMode() }}" ng-blur="categoriesCntlr.updateCategory($event, $index)" ng-bind="category"></span>
+        <span ng-show="categoriesCntlr.isEditMode()" class="delete">x</span>
+    </span>
+    <span class="label label-light label-success" ng-click="categoriesCntlr.addCategory()" ng-show="categoriesCntlr.isEditMode()">
+        <span class="add">+</span>
+    </span>
+</div>
