@@ -1,0 +1,20 @@
+{
+    "rules": {
+        ".read": true,
+        ".write": "root.child('admin').val() == auth.uid",
+        "admins":{
+          ".write": false,
+          "$username":{
+            ".write": false
+          }
+        },
+        "data":{
+          "posts": {
+              ".write":"root.child('admin').val() == auth.uid"
+          },
+          "pano": {
+              ".write": "root.child('admin').val() == auth.uid"
+          }
+        }
+    }
+}
