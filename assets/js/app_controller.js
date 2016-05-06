@@ -27,6 +27,9 @@ angular.module('app.controllers', [])
             alert('asd');
             ev.preventDefault();
         };
+        this.getLogo = function () {
+            return $scope.getData('site', 'logo');
+        };
     })
     .controller('PageController', function ($scope, $state) {
         this.search_query = '';
@@ -90,6 +93,7 @@ angular.module('app.controllers', [])
                 date: moment().format('dddd DD MMMM YYYY'),
                 categories: ['cat1'],
                 title: "New Title",
+                intro: "this is sample intro",
                 content: "this is sample content"
             };
 
@@ -129,9 +133,15 @@ angular.module('app.controllers', [])
 
         this.post;
         this.postid;
-        this.contentHTML;
+        var introHTML;
+        var contentHTML;
         this.editmode = false;
         this.sharingBoxVisible = false;
+
+        var resetHTML = function () {
+            introHTML = undefined;
+            contentHTML = undefined;
+        };
         this.getData = function (param) {
             if (this.post === undefined) {
                 this.loadPost();
@@ -146,6 +156,9 @@ angular.module('app.controllers', [])
             return ($stateParams.alias != undefined);
         };
 
+        this.isSingleView = function () {
+            return ($stateParams.alias !== undefined);
+        };
 
         this.loadPost = function () {
             var posts = $scope.getData('posts');
@@ -165,17 +178,29 @@ angular.module('app.controllers', [])
         };
 
         this.parseMarkdown = function () {
-            if (this.post.content && this.contentHTML === undefined) {
-                var markdown = marked(this.post.content);
+            var re = /img src="(imgs\/([a-zA-Z0-9]+))"/g;
+
+            if (this.post.intro && introHTML === undefined) {
+                var markdown = marked(this.post.intro);
                 //replace the imgs
-                var re = /img src="(imgs\/([a-zA-Z0-9]+))"/g;
                 while (match = re.exec(markdown)) {
                     var image = $scope.getData('posts', this.postid, 'images', match[2]);
                     if (image !== undefined) {
                         markdown = markdown.replace(match[1], image);
                     }
                 }
-                this.contentHTML = markdown;
+                introHTML = markdown;
+            }
+            if (this.post.content && contentHTML === undefined) {
+                var markdown = marked(this.post.content);
+                //replace the imgs
+                while (match = re.exec(markdown)) {
+                    var image = $scope.getData('posts', this.postid, 'images', match[2]);
+                    if (image !== undefined) {
+                        markdown = markdown.replace(match[1], image);
+                    }
+                }
+                contentHTML = markdown;
             }
         };
 
@@ -189,6 +214,14 @@ angular.module('app.controllers', [])
 
         this.getFBref = function () {
             return API.getFirebasePostRef() + "/" + this.postid;
+        };
+        this.getIntroHTML = function () {
+            this.loadPost();
+            return introHTML;
+        };
+        this.getContentHTML = function () {
+            this.loadPost();
+            return contentHTML;
         };
 
         //on init
@@ -276,16 +309,23 @@ angular.module('app.controllers', [])
                                 form.data('pending-upload', true);
                                 $timeout(function () {
                                     form.data('pending-upload', false);
-                                    var postid = $(e.$textarea).parents('form').data('postid');
+                                    var postid = form.data('postid');
+                                    var localPost = $scope.getData('posts', postid);
                                     //push the changes to firebase
                                     //TODO fix the two way binding
                                     var postsRef = new Firebase(API.getFirebasePostRef() + "/" + postid);
                                     var post = $firebaseObject(postsRef);
                                     post.$loaded().then(function () {
-                                        post.content = e.getContent();
+                                        if (form.attr('id') == "introEditor") {
+                                            post.intro = e.getContent();
+                                            localPost.intro = e.getContent();
+                                        } else if (form.attr('id') == "contentEditor") {
+                                            post.content = e.getContent();
+                                            localPost.content = e.getContent();
+                                        }
                                         post.$save();
+                                        resetHTML();
                                     });
-
                                     parseMarkdown(postid, e.getContent(), $(e.$textarea).parent().find('#md-preview'));
                                 }, 3000);
                             }
@@ -296,15 +336,14 @@ angular.module('app.controllers', [])
                 //override the image drop
                 $(element).find('form#coverimage-dropzone').dropzone({previewsContainer: false});
                 //parse on load
-                parseMarkdown(this.postid, this.post.content, $(element).find('#md-preview'));
+                parseMarkdown(this.postid, this.post.intro, $(element).find('form#introEditor #md-preview'));
+                parseMarkdown(this.postid, this.post.content, $(element).find('form#contentEditor #md-preview'));
             }
         };
         this.save = function () {
             this.editmode = false;
-            //remove the editors
         };
         this.delete = function () {
-
             //push the changes to firebase
             //TODO fix the two way binding
             var postsRef = new Firebase(API.getFirebasePostRef() + "/" + this.postid);

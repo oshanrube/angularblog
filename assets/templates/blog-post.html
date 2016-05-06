@@ -33,15 +33,19 @@
             </div>
 
             <div class="blog-post-meta">
-                <material-categories categories="post.getData('categories')" editmode="post.isEditMode()"></material-categories>
+                <material-categories categories="post.getData('categories')" editmode="post.isEditMode()" postid="post.postid"></material-categories>
 
                 <p class="blog-post-date pull-right" material-datepicker="post.post" postid="post.postid"></p>
             </div>
             <div class="blog-post-content">
-                <form ng-show="post.isEditMode()" data-fbref="{{post.getFBref()}}" data-postid="{{ post.postid }}" data-target="images">
+                <form id="introEditor" ng-show="post.isEditMode() && !post.isSingleView()" data-fbref="{{post.getFBref()}}" data-postid="{{ post.postid }}" data-target="images">
+                    <textarea name="content" data-hidden-buttons="cmdPreview" data-provide="markdown" rows="10">{{ post.getData('intro') }}</textarea>
+                </form>
+                <form id="contentEditor" ng-show="post.isEditMode() && post.isSingleView()" data-fbref="{{post.getFBref()}}" data-postid="{{ post.postid }}" data-target="images">
                     <textarea name="content" data-hidden-buttons="cmdPreview" data-provide="markdown" rows="10">{{ post.getData('content') }}</textarea>
                 </form>
-                <div class="md-content" ng-hide="post.isEditMode()" ng-bind-html="post.contentHTML"></div>
+                <div class="md-content" ng-hide="post.isEditMode() || post.isSingleView()" ng-bind-html="post.getIntroHTML()"></div>
+                <div class="md-content" ng-hide="post.isEditMode() || !post.isSingleView()" ng-bind-html="post.getContentHTML()"></div>
 
                 <a class="btn btn-info" ng-hide="post.isReadmorePage()" ui-sref="post({alias: post.getData('alias') })">Read more</a>
                 <a class="blog-post-share pull-right" ng-click="post.toggleSharingBox()">

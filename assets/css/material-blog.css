@@ -157,7 +157,7 @@ blog-post .blog-post {
     right: 132px; }
   blog-post .blog-post a {
     text-decoration: none; }
-  blog-post .blog-post p {
+  blog-post .blog-post p, blog-post .blog-post li {
     font-size: 13px;
     font-weight: 400; }
   blog-post .blog-post .blog-post-meta {
@@ -199,12 +199,15 @@ blog-post .blog-post {
   padding: 16px 22px; }
   .blog-post-content.draft {
     background: #eee; }
-  .blog-post-content p {
+  .blog-post-content p, .blog-post-content li {
     color: #999;
     margin: 18px auto; }
   .blog-post-content .btn {
     padding-left: 6px;
     padding-right: 6px; }
+  .blog-post-content div.md-content > ul li {
+    padding: 0;
+    margin: 0; }
 
 .blog-comments .panel {
   transition: all 0.3s ease; }

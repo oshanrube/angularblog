@@ -12,26 +12,12 @@
             // download the data into a local object
             $rootScope.syncObject = $firebaseObject($rootScope.FirebaseRef);
 
-            $rootScope.syncObject.$watch(function () {
-                console.log("data changed!");
-            });
-
-            //$rootScope.syncObject.$save().then(function (ref) {
-            //    console.log("data saved!");
-            //}, function (error) {
-            //    console.log("Error:", error);
-            //});
             // synchronize the object with a three-way data binding
             // click on `index.html` above to see it used in the DOM!
             $rootScope.syncObject.$bindTo($rootScope, "data").then(function () {
                 //stop loading
                 $('#firebase-loading').remove();
-                console.log("data loaded!");
             });
-
-            var FirebaseAdminRef = new Firebase(API.getFirebaseAdminRef());
-            // download the data into a local object
-            var syncObject = $firebaseObject(FirebaseAdminRef);
 
             $rootScope.getData = function () {
                 if ($rootScope.data !== undefined) {
@@ -47,6 +33,9 @@
                 }
             };
 
+            var FirebaseAdminRef = new Firebase(API.getFirebaseAdminRef());
+            // download the data into a local object
+            var syncObject = $firebaseObject(FirebaseAdminRef);
             $rootScope.isAdmin = function () {
                 return ($rootScope.localStorage.authData.uid == syncObject.$value);
             }

@@ -130,14 +130,23 @@ angular.module('app.directives', [])
             restrict: 'E',
             scope: {
                 categories: '=',
-                editmode: '='
+                editmode: '=',
+                postid: '='
             },
             templateUrl: 'assets/templates/material-categories.html'
         }
     })
-    .controller('materialCategories', function ($scope) {
+    .controller('materialCategories', function ($scope, $firebaseObject, API) {
         this.updateCategory = function ($event, $index) {
             $scope.$parent.categories[$index] = $($event.target).text();
+            //push the changes to firebase
+            //TODO fix the two way binding
+            var postsRef = new Firebase(API.getFirebasePostRef() + "/" + $scope.$parent.postid);
+            var post = $firebaseObject(postsRef);
+            post.$loaded().then(function () {
+                post.categories = $scope.$parent.categories
+                post.$save();
+            });
         };
         this.isEditMode = function () {
             return $scope.$parent.editmode;
@@ -215,7 +224,7 @@ angular.module('app.directives', [])
 
                 $rootScope.syncObject.$loaded().then(function () {
                     blocks = $rootScope.getData('blocks');
-                    //scope.trustedHtml = blocks[scope.model];
+                    scope.trustedHtml = blocks[scope.model];
                 });
 
             }

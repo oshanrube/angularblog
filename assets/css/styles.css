@@ -1,5 +1,18 @@
+body a.navbar-brand {
+  padding: 0; }
+  body a.navbar-brand #logo {
+    background-image: url("images/logo.png");
+    width: 60px;
+    height: 60px;
+    float: left;
+    background-size: contain; }
+  body a.navbar-brand #title {
+    padding: 15px;
+    float: left; }
 body section.blog-post form {
   position: relative; }
+  body section.blog-post form img {
+    width: 100%; }
   body section.blog-post form .pace .pace-activity {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.35); }
@@ -31,7 +44,7 @@ body section.blog-post div.sharing-bar {
   border-top: 1px solid #ccc; }
   body section.blog-post div.sharing-bar.ng-hide-remove {
     animation: fadeIn 0.5s; }
-  body section.blog-post div.sharing-bar.ng-hide-a {
+  body section.blog-post div.sharing-bar.ng-hide-add {
     animation: fadeOut 1s; }
   body section.blog-post div.sharing-bar a {
     cursor: pointer;

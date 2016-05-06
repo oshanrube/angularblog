@@ -35,3 +35,4 @@ view of the database structure
 * add an interface to add new users and admins
 * add comments section(something using facebook comments)
 * create few more plugins
+* add dropzone to logo and coverphoto
