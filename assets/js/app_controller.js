@@ -27,12 +27,10 @@ angular.module('app.controllers', [])
             alert('asd');
             ev.preventDefault();
         };
-        this.getLogo = function () {
-            return $scope.getData('site', 'logo');
-        };
     })
     .controller('PageController', function ($scope, $state) {
         this.search_query = '';
+        this.search_categories = [];
 
         this.login = function () {
             if (!this.isLoggedIn()) {
@@ -60,6 +58,34 @@ angular.module('app.controllers', [])
         this.getSocial = function (social) {
             return $scope.getData('social', social);
         };
+
+        this.getFilterKey = function (category) {
+            //check for duplicates
+            for (key in this.search_categories) {
+                if (this.search_categories[key] == category.name) {
+                    return key;
+                }
+            }
+            return false;
+        };
+        this.isInFilter = function (category) {
+            return (this.getFilterKey(category) !== false);
+        };
+
+        this.toggleFromCategoryFilter = function (category) {
+            if (!this.isInFilter(category)) {
+                this.search_categories.push(category.name);
+            } else {
+                this.search_categories.splice(this.getFilterKey(category), 1);
+            }
+        };
+
+        this.getSearches = function () {
+            return {
+                query: this.search_query,
+                categories: this.search_categories
+            }
+        }
     })
     .controller('PostsController', function ($scope, $firebaseArray, API, User) {
 
@@ -67,15 +93,38 @@ angular.module('app.controllers', [])
             return ((post.state == "published") || (User.isLoggedIn() && post.state == 'draft'));
         };
 
-        this.getPosts = function (search_query) {
+
+        this.getPosts = function (searches) {
             var posts = $scope.getData('posts');
+
+            var filterByCategory = function (post) {
+                //check if filters are there
+                if (searches.categories.length != 0) {
+                    for (cat_key in searches.categories) {
+                        var search_cat = searches.categories[cat_key];
+                        var found = false;
+
+                        for (post_key in post.categories) {
+                            var post_cat = post.categories[post_key];
+                            if (search_cat == post_cat) {
+                                found = true;
+                            }
+                        }
+
+                        if (!found) {
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            };
 
             var filtered_posts = {};
             for (key in posts) {
                 var post = posts[key];
-                var re = new RegExp(search_query, 'i');
+                var re = new RegExp(searches.query, 'i');
 
-                if (isPublished(post)) {
+                if (isPublished(post) && filterByCategory(post)) {
                     if (post.title.match(re)) {
                         filtered_posts[key] = posts[key];
                     }
@@ -241,7 +290,7 @@ angular.module('app.controllers', [])
                     //replace the imgs
                     var re = /img src="(imgs\/([a-zA-Z0-9]+))"/g;
                     while (match = re.exec(markdown)) {
-                        var image = $rootScope.getData('posts', postid, 'images', match[2]);
+                        var image = $scope.getData('posts', postid, 'images', match[2]);
                         if (image !== undefined) {
                             markdown = markdown.replace(match[1], image);
                         }
@@ -355,7 +404,7 @@ angular.module('app.controllers', [])
 
         };
         this.isPostPublished = function () {
-            return this.post.state == "published";
+            return (this.post !== undefined && this.post.state == "published");
         };
         this.publish = function () {
             var pst = $scope.getData('posts', this.postid);

@@ -1,10 +1,12 @@
-<div class="sidebar-module" ng-controller="abCategoriesController as categories">
+<div id="ab-categories" class="sidebar-module" ng-controller="abCategoriesController as categories">
     <div class="panel panel-default">
         <div class="panel-body">
             <h4>Categories</h4>
             <ol class="categories list-unstyled">
                 <li ng-repeat="category in categories.getCategories()">
-                    <a class="label label-light label-success" href="filter-category.html">{{ category.name }}</a>
+                    <a class="label label-light label-success" ng-class="page.isInFilter(category)?'added':''" ng-click="page.toggleFromCategoryFilter(category)">
+                        {{ category.name }}
+                    </a>
                     <span class="label label-light label-default pull-right">{{ category.count }}</span>
                 </li>
             </ol>

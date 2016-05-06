@@ -6,7 +6,7 @@
             </nav>
             <div class="row">
                 <div class="col-sm-12">
-                    <blog-post ng-repeat="(postid, blogpost) in posts.getPosts(page.search_query)"></blog-post>
+                    <blog-post ng-animate="'animate'" ng-repeat="(postid, blogpost) in posts.getPosts(page.getSearches())"></blog-post>
                 </div>
             </div>
             <nav ng-show="posts.hasMore()">
